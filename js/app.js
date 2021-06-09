@@ -13,7 +13,7 @@ fetchData(employeeAPI)
 
 // card.forEach(card => card.addEventListener('click', (e) =>{
 //     if(e.target.id !== 'email'){
-//         console.log('wow')
+//         
 //     }
 
 // }))
