@@ -1,0 +1,48 @@
+.card{
+    width: calc(87.5% / 3);
+    // width:30%;
+    flex-direction: row;
+    justify-content: flex-start;
+    border: 1.25px solid grey;
+    border-radius: .375rem;
+    padding: 1.5rem .5rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+.cardInfo{
+    flex-direction: column;
+    margin-left: .75rem;
+}
+
+.thumbnail{
+    width: 4.6875rem;
+    height: 4.6875rem;
+    border-radius: 50%;
+}
+
+.popup{
+    flex-direction: column;
+}
+
+.popupThumbnail{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+}
+
+.lightbox{
+    z-index: 1;
+    background-color: grey;
+    width: 100%;
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: grey;
+
+        &:hover{
+        color:purple;
+        }
+}
