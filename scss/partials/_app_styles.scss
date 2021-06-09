@@ -1,0 +1,97 @@
+.card{
+    width: calc(87.5% / 3);
+    // width:30%;
+    flex-direction: row;
+    justify-content: flex-start;
+    border: 1.25px solid grey;
+    border-radius: .375rem;
+    padding: 1.5rem .5rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+.cardInfo{
+    flex-direction: column;
+    margin-left: 1rem;
+}
+
+.popupInfo{
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.thumbnail{
+    justify-content: left;
+    
+    width: 4.6875rem;
+    height: 4.6875rem;
+    border-radius: 50%;
+}
+
+.popup{
+    display:none;
+    text-align: center;
+    width: 40vw;
+    position: absolute;
+    top: 10%;
+    left: 32.5%;
+    background-color: #ffff;
+    z-index: 2;
+    flex-direction: column;
+    border-radius: .375rem;
+    & a{
+        margin-top: 1rem;
+    }
+}
+
+.popupThumbnail{
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    margin: 1rem auto;
+}
+
+.popupLocation{
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px gray solid;
+}
+
+.phone{
+    margin: 2rem auto 1rem auto;
+}
+
+.adress{
+    margin-bottom: 1rem;
+}
+
+.birthday{
+    margin-bottom: 2rem;
+}
+
+.close{
+    font-size: 1.5rem;
+    text-align: right;
+    margin: 0 5% 0 auto;
+    cursor: pointer;
+}
+
+.lightbox{
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: black;
+    opacity: .6;
+    width: 100%;
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: grey;
+
+        &:hover{
+        color:purple;
+        }
+}
