@@ -3,7 +3,7 @@
 //-----------------------
 
 //document elements
-const searchValue = document.querySelector('#search').value
+const search = document.querySelector('#search')
 const employeeList = document.querySelector('.employeeSection')
 const lightbox = document.querySelector('.lightbox')
 const popup = document.querySelector('.popup')
@@ -104,10 +104,17 @@ function closePopup(e){
 }
 //search filter function
 function searchFilter(){
-    cards.forEach(card => { 
+        cards.forEach(card => {
         cardName = card.querySelector('h3')
-        console.log(searchValue)
-        if(searchValue.toUppercase === cardName.textContent.toUppercase){}
-        
+        if(cardName.textContent.toUpperCase().indexOf(search.value.toUpperCase()) > -1){
+            card.style.display = 'flex'
+        }
+        else{
+            console.log('hideCards')
+            card.style.display = 'none'
+        }
     })   
 }
+
+
+
