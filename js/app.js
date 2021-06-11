@@ -8,6 +8,7 @@ const search = document.querySelector('#search')
 const employeeList = document.querySelector('.employeeSection')
 const lightbox = document.querySelector('.lightbox')
 const popup = document.querySelector('.popup')
+const filter = document.querySelector('#filter')
 
 //api
 const employeeAPI = `https://randomuser.me/api/?results=12&inc=name, picture,
@@ -23,27 +24,31 @@ let cards = []
 // FETCH API DATA
 //-----------------------
 
-fetchData(employeeAPI)
+fetchData(employeeAPI,employees)
 
 //-----------------------
 // EVENT LISTENERS
 //-----------------------
 
+search.addEventListener('keyup', () => searchFilter())
+filter.addEventListener('change', () => selectFilter())
 document.addEventListener('click', (e) => {
     cards.forEach(card => {
     cardEmail = card.querySelector('#email')
     cardThumbnail = card.querySelector('.thumbnail')
-    cardName = card.querySelector('h3')
-    if(e.target === card || e.target === cardName ||  e.target === cardThumbnail  && e.target !== cardEmail){
-        generatePopup(cardName)
-        }
-    else {
-        closePopup(e)
-    }
-    })
+        cardName = card.querySelector('h3')
+            if(e.target === card || e.target === cardName ||  e.target === cardThumbnail  && e.target !== cardEmail){
+                generatePopup(cardName)
+                }
+            else {
+                closePopup(e)
+            }
+        })
+        // if(e.target === next || e.target === previous){
+        // changeEmployeePopup()
+        // }
 })
 
-search.addEventListener('keyup', () => searchFilter())
 
 //-----------------------
 // HELPER FUNCTIONS
@@ -90,7 +95,8 @@ function generatePopup(){
         <p class="phone">${popupEmployee.phone}</p>
         <p class="adress">${popupEmployee.location.street.name} ${popupEmployee.location.street.number} ${popupEmployee.location.city} ${popupEmployee.location.state}, ${popupEmployee.location.postcode}</p>
         <p class ="birthday">Birthday: ${dobFlat}</p>
-    </div>`
+    </div>
+    <img class="previous" src="svg/arrow.svg"> <img class="next" src="svg/arrow.svg">`
 lightbox.style.display = 'flex'
 popup.style.display = 'flex'
 body.style.overflow = 'hidden'
@@ -116,6 +122,19 @@ function searchFilter(){
         }
     })   
 }
-
+//select filter function
+function selectFilter(){
+        if(filter.value === 'A-Z'){
+            employees.sort((a,b) => (a.name.first > b.name.first) ? 1 : -1)  
+            employeeListHTML = []
+            return generateHTML()
+        }
+        if(filter.value === 'Z-A'){
+            employees.sort((a,b) => (a.name.first > b.name.first) ? 1 : -1)
+            employees.reverse()
+            employeeListHTML = []
+            return generateHTML()
+        }
+}
 
 

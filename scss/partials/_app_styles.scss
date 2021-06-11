@@ -1,3 +1,7 @@
+// -------------------
+// CARD STYLES
+// -------------------
+
 .card{
     flex-direction: row;
     justify-content: flex-start;
@@ -8,17 +12,30 @@
     cursor: pointer;
 }
 
-.cardInfo{
-    flex-direction: column;
-    margin-left: 1rem;
-}
-
 .thumbnail{
     justify-content: left;
     width: 4.6875rem;
     height: 4.6875rem;
     border-radius: 50%;
 }
+
+.cardInfo{
+    flex-direction: column;
+    margin-left: 1rem;
+}
+
+#email{
+    text-decoration: none;
+    color: grey;
+
+        &:hover{
+        color:purple;
+        }
+}
+
+// -------------------
+// LIGHTBOX STYLES
+// -------------------
 
 .lightbox{
     display: none;
@@ -28,8 +45,8 @@
     z-index: 1;
     background-color: rgba(0,0,0, .6);
     opacity: .6;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 }
 
 .popup{
@@ -80,6 +97,23 @@
     margin-bottom: 2rem;
 }
 
+.previous,
+.next{
+    height: 2rem;
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+}
+
+.previous{
+    transform: scaleX(-1);
+    left: 5%;
+}
+
+.next{
+    right: 5%;
+}
+
 .close{
     font-size: 1.5rem;
     text-align: right;
@@ -87,11 +121,3 @@
     cursor: pointer;
 }
 
-#email{
-    text-decoration: none;
-    color: grey;
-
-        &:hover{
-        color:purple;
-        }
-}

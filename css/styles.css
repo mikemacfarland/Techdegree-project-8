@@ -15,7 +15,7 @@ body {
 }
 
 header {
-  padding: 1rem 0;
+  padding-top: 1rem;
   flex-direction: column;
 }
 
@@ -27,6 +27,13 @@ h1 {
 input {
   text-indent: 1rem;
   height: 2rem;
+}
+
+#filter {
+  text-indent: 1rem;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  width: 100%;
 }
 
 .flex {
@@ -58,16 +65,24 @@ h1 {
   cursor: pointer;
 }
 
-.cardInfo {
-  flex-direction: column;
-  margin-left: 1rem;
-}
-
 .thumbnail {
   justify-content: left;
   width: 4.6875rem;
   height: 4.6875rem;
   border-radius: 50%;
+}
+
+.cardInfo {
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+#email {
+  text-decoration: none;
+  color: grey;
+}
+#email:hover {
+  color: purple;
 }
 
 .lightbox {
@@ -78,8 +93,8 @@ h1 {
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.6);
   opacity: 0.6;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 
 .popup {
@@ -130,19 +145,28 @@ h1 {
   margin-bottom: 2rem;
 }
 
+.previous,
+.next {
+  height: 2rem;
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+}
+
+.previous {
+  transform: scaleX(-1);
+  left: 5%;
+}
+
+.next {
+  right: 5%;
+}
+
 .close {
   font-size: 1.5rem;
   text-align: right;
   margin: 0 5% 0 auto;
   cursor: pointer;
-}
-
-#email {
-  text-decoration: none;
-  color: grey;
-}
-#email:hover {
-  color: purple;
 }
 
 @media (min-width: 480px) {
