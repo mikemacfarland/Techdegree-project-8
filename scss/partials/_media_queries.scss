@@ -1,0 +1,68 @@
+@media (min-width: 480px) {
+
+    .employeeSection{
+        flex-direction: row;
+    }
+
+    .card{
+        font-size: 1.1rem;
+        width: 45%;
+    }
+}
+
+@media (min-width: 520px) {
+    h1{
+        font-size: 1.2rem;
+    }
+
+    .card{
+        font-size: 1.1rem;
+        width: 45%;
+    }
+
+    .popup{
+        width: 70vw;
+        left: 15vw;
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 768px) {
+
+    header{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    h1{
+        margin: auto 0;
+        text-align: left;
+    }
+
+    input{
+        width: 32%;
+        margin-left:auto;
+    }
+    
+    .card{
+        width:30%;
+    }
+
+    .popup{
+        width: 50vw;
+        left: 25vw;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .card{
+        width:30.5%;
+    }
+
+    .popup{
+        width: 40vw;
+        left: 30vw;
+        
+    }
+}

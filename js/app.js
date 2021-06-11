@@ -3,11 +3,11 @@
 //-----------------------
 
 //document elements
+const body = document.querySelector('body')
 const search = document.querySelector('#search')
 const employeeList = document.querySelector('.employeeSection')
 const lightbox = document.querySelector('.lightbox')
 const popup = document.querySelector('.popup')
-
 
 //api
 const employeeAPI = `https://randomuser.me/api/?results=12&inc=name, picture,
@@ -78,29 +78,31 @@ function generateHTML() {
 
 //generate html and data for employee card popup
 function generatePopup(){
-    console.log('')
     let [popupEmployee] = employees.filter(employee => `${employee.name.first} ${employee.name.last}` === cardName.textContent)
-        popup.innerHTML = 
+    let dob = popupEmployee.dob.date.split("")
+    let dobFlat = `${dob[5]+dob[6]}-${dob[8]+dob[9]}-${dob[2]+dob[3]}`
+    popup.innerHTML = 
    `<p class="close">x</p>
     <img class="popupThumbnail" src="${popupEmployee.picture.large}" alt="${popupEmployee.name.first} ${popupEmployee.name.last}">
     <div class="popupInfo flex">
         <h3>${popupEmployee.name.first} ${popupEmployee.name.last}</h3>
-        <a href="mailto:${popupEmployee.email}">Send Email</a>
-        <p class="popupLocation">${popupEmployee.location.city}</p>
+        <a id="email" href="mailto:${popupEmployee.email}">Send Email</a>
         <p class="phone">${popupEmployee.phone}</p>
-        <p class="adress">${popupEmployee.location.street.name} ${popupEmployee.location.street.number} ${popupEmployee.location.state} ${popupEmployee.location.postcode}</p>
-        <p class ="birthday">Birthday: ${popupEmployee.dob}</p>
+        <p class="adress">${popupEmployee.location.street.name} ${popupEmployee.location.street.number} ${popupEmployee.location.city} ${popupEmployee.location.state}, ${popupEmployee.location.postcode}</p>
+        <p class ="birthday">Birthday: ${dobFlat}</p>
     </div>`
 lightbox.style.display = 'flex'
 popup.style.display = 'flex'
+body.style.overflow = 'hidden'
+
 }
 //close popup function
 function closePopup(e){
     if(e.target.className === 'close' || e.target.className === 'lightbox'){
         lightbox.style.display = 'none'
         popup.style.display = 'none'
+        body.style.overflow = 'visible'
     }
-    
 }
 //search filter function
 function searchFilter(){
@@ -110,7 +112,6 @@ function searchFilter(){
             card.style.display = 'flex'
         }
         else{
-            console.log('hideCards')
             card.style.display = 'none'
         }
     })   

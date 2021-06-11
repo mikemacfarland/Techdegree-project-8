@@ -1,6 +1,4 @@
 .card{
-    width: calc(87.5% / 3);
-    // width:30%;
     flex-direction: row;
     justify-content: flex-start;
     border: 1.25px solid grey;
@@ -15,12 +13,6 @@
     margin-left: 1rem;
 }
 
-.popupInfo{
-    flex-direction: column;
-    width: 90%;
-    margin: 0 auto;
-}
-
 .thumbnail{
     justify-content: left;
     width: 4.6875rem;
@@ -30,7 +22,7 @@
 
 .lightbox{
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 1;
@@ -41,12 +33,13 @@
 }
 
 .popup{
+    font-size: 1.1rem;
     display: none;
     text-align: center;
-    width: 40vw;
-    position: absolute;
+    position: fixed;
+    width: 90vw;
     top: 10%;
-    left: 32.5%;
+    left: 5vw;
     background-color: rgba(255, 255, 255, 1);
     z-index: 2;
     flex-direction: column;
@@ -54,6 +47,12 @@
     & a{
         margin-top: 1rem;
     }
+}
+
+.popupInfo{
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .popupThumbnail{
@@ -88,7 +87,7 @@
     cursor: pointer;
 }
 
-a{
+#email{
     text-decoration: none;
     color: grey;
 
