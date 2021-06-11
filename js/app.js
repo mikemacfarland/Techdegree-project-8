@@ -1,9 +1,27 @@
+//-----------------------
+// VARIABLES
+//-----------------------
+
+//document elements
+const searchValue = document.querySelector('#search').value
 const employeeList = document.querySelector('.employeeSection')
-// const card = employeeList.querySelectorAll('.card')
-let employeeAPI = 'https://randomuser.me/api/?results=12'
+const lightbox = document.querySelector('.lightbox')
+const popup = document.querySelector('.popup')
+
+
+//api
+const employeeAPI = `https://randomuser.me/api/?results=12&inc=name, picture,
+email, location, phone, dob &noinfo &nat=US`
+
+//empty arrays to populate from api data
 let employeeListHTML = []
 let popupListHTML = []
 let employees = []
+let cards = []
+
+//-----------------------
+// FETCH API DATA
+//-----------------------
 
 fetchData(employeeAPI)
 
@@ -11,12 +29,21 @@ fetchData(employeeAPI)
 // EVENT LISTENERS
 //-----------------------
 
-// card.forEach(card => card.addEventListener('click', (e) =>{
-//     if(e.target.id !== 'email'){
-//         
-//     }
+document.addEventListener('click', (e) => {
+    cards.forEach(card => {
+    cardEmail = card.querySelector('#email')
+    cardThumbnail = card.querySelector('.thumbnail')
+    cardName = card.querySelector('h3')
+    if(e.target === card || e.target === cardName ||  e.target === cardThumbnail  && e.target !== cardEmail){
+        generatePopup(cardName)
+        }
+    else {
+        closePopup(e)
+    }
+    })
+})
 
-// }))
+search.addEventListener('keyup', () => searchFilter())
 
 //-----------------------
 // HELPER FUNCTIONS
@@ -27,13 +54,12 @@ function fetchData(url) {
     fetch(url)
     .then(response => response.json())
     .then(data => data.results.forEach(result => employees.push(result)))
-    .then(generateHTML())
+    .then(generateHTML)
+    .catch(err => console.log(err))
 }
-
 // generate html for employee tabs helper function
 function generateHTML() {
         employees.forEach(employee => {
-            console.log(employee)
         // generate array items for employee cards
         employeeListHTML.push(
             `<div class="card flex">
@@ -44,37 +70,44 @@ function generateHTML() {
                     <p>${employee.location.city}</p>
                 </div>
             </div>`)
-
-        // generate array items for employee popup cards
-        popupListHTML.push(
-            `<div class="card flex">
-                <p class="close">x</p>
-                <img class="popupthumbnail" src="${employee.picture.large}" alt="${employee.name.first} ${employee.name.last}">
-                <div class="popupInfo flex">
-                    <h3>${employee.name.first} ${employee.name.last}</h3>
-                    <a href="mailto:${employee.email}">Send Email</a>
-                    <p class="popupLocation">${employee.location.city}</p>
-                    <p class="phone">${employee.phone}</p>
-                    <p class="birthday">${employee.location.street.name} ${employee.location.street.number} ${employee.location.state} ${employee.location.postcode}</p>
-                    <p>Birthday: ${employee.dob}</p>
-                </div>
-            </div>`)
     })
-                            //  join array items to be used as one single string inserted into HTML
+    //  join array items to be used as one single string inserted into HTML
     employeeList.innerHTML = employeeListHTML.join("")
+    document.querySelectorAll('.card').forEach(card => cards.push(card))
 }
 
-// function generatePopup(e){
-//     let lightbox = document.querySelector('.lightbox')
-//     if()
-//     lightbox.innerHTML = 
-// }
-
-
-
-
-
-
-
-
-   
+//generate html and data for employee card popup
+function generatePopup(){
+    console.log('')
+    let [popupEmployee] = employees.filter(employee => `${employee.name.first} ${employee.name.last}` === cardName.textContent)
+        popup.innerHTML = 
+   `<p class="close">x</p>
+    <img class="popupThumbnail" src="${popupEmployee.picture.large}" alt="${popupEmployee.name.first} ${popupEmployee.name.last}">
+    <div class="popupInfo flex">
+        <h3>${popupEmployee.name.first} ${popupEmployee.name.last}</h3>
+        <a href="mailto:${popupEmployee.email}">Send Email</a>
+        <p class="popupLocation">${popupEmployee.location.city}</p>
+        <p class="phone">${popupEmployee.phone}</p>
+        <p class="adress">${popupEmployee.location.street.name} ${popupEmployee.location.street.number} ${popupEmployee.location.state} ${popupEmployee.location.postcode}</p>
+        <p class ="birthday">Birthday: ${popupEmployee.dob}</p>
+    </div>`
+lightbox.style.display = 'flex'
+popup.style.display = 'flex'
+}
+//close popup function
+function closePopup(e){
+    if(e.target.className === 'close' || e.target.className === 'lightbox'){
+        lightbox.style.display = 'none'
+        popup.style.display = 'none'
+    }
+    
+}
+//search filter function
+function searchFilter(){
+    cards.forEach(card => { 
+        cardName = card.querySelector('h3')
+        console.log(searchValue)
+        if(searchValue.toUppercase === cardName.textContent.toUppercase){}
+        
+    })   
+}

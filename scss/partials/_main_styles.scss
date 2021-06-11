@@ -15,8 +15,13 @@ body{
 }
 
 header{
-    padding-top: 1rem;
-    display: flex;
+    padding: 1rem 0;
+    flex-direction: row;
+}
+
+input{
+    margin-left: auto;
+    width: 35%;
 }
 
 .flex{
