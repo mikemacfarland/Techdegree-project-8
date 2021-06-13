@@ -33,6 +33,7 @@ fetchData(employeeAPI)
 
 search.addEventListener('keyup', () => searchFilter())
 filter.addEventListener('change', () => selectFilter())
+//listener for employee popup & popup actions
 document.addEventListener('click', (e) => {cards.forEach(card => { 
     //popup generate statement
     cardEmail = card.querySelector('#email')
@@ -46,24 +47,21 @@ document.addEventListener('click', (e) => {cards.forEach(card => {
     // popup change statements and close statement
     next = document.querySelector('.next')
     previous = document.querySelector('.previous')
-    if(e.target === next){
-        nextEmployee()
+    if(e.target === next || e.target === previous){
+        nextEmployee(e)
+        // nextEmployee()
         }    
-    if(e.target === previous){
-        previousEmployee()
-        }  
     else {
         closePopup(e)
     }
             
 })
 
-
 //-----------------------
 // HELPER FUNCTIONS
 //-----------------------
 
-// fetch api function with generateHTML() function call integrated
+// fetch api function with generateHTML() function call
 function fetchData(url) {
     fetch(url)
     .then(response => response.json())
@@ -71,10 +69,12 @@ function fetchData(url) {
     .then(generateHTML)
     .catch(err => console.log(err))
 }
-// generate html for employee tabs helper function
+// generate html for employee tabs, populate employeeNames array
 function generateHTML() {
+        employeeNames = []
         employees.forEach(employee => {
         // generate array items for employee cards
+        employeeNames.push(`${employee.name.first} ${employee.name.last}`)
         employeeListHTML.push(
             `<div class="card flex">
             <img class="thumbnail" src="${employee.picture.large}" alt="${employee.name.first} ${employee.name.last}">
@@ -89,9 +89,8 @@ function generateHTML() {
     employeeList.innerHTML = employeeListHTML.join("")
     document.querySelectorAll('.card').forEach(card => cards.push(card))
 }
-
 //generate html and data for employee card popup
-function generatePopup(employeeName){    //employee array                                                   
+function generatePopup(employeeName){                                                 
     let [popupEmployee] = employees.filter(employee => `${employee.name.first} ${employee.name.last}` === employeeName)
     let dob = popupEmployee.dob.date.split("")
     let dobFlat = `${dob[5]+dob[6]}-${dob[8]+dob[9]}-${dob[2]+dob[3]}`
@@ -102,7 +101,7 @@ function generatePopup(employeeName){    //employee array
         <h3>${popupEmployee.name.first} ${popupEmployee.name.last}</h3>
         <a id="email" href="mailto:${popupEmployee.email}">Send Email</a>
         <p class="phone">${popupEmployee.phone}</p>
-        <p class="adress">${popupEmployee.location.street.name} ${popupEmployee.location.street.number} ${popupEmployee.location.city} ${popupEmployee.location.state}, ${popupEmployee.location.postcode}</p>
+        <p class="adress">${popupEmployee.location.street.number} ${popupEmployee.location.street.name} ${popupEmployee.location.city} ${popupEmployee.location.state}, ${popupEmployee.location.postcode}</p>
         <p class ="birthday">Birthday: ${dobFlat}</p>
     </div>
     <img class="previous" src="svg/arrow.svg"> <img class="next" src="svg/arrow.svg">`
@@ -145,29 +144,27 @@ function selectFilter(){
             return generateHTML()
         }
 }
-
-function nextEmployee(){
-    currentName = document.querySelector('.popupInfo').querySelector('h3').textContent
-    employees.forEach(employee => employeeNames.push(`${employee.name.first} ${employee.name.last}`))
-    nextName = employeeNames[employeeNames.indexOf(currentName) + 1]
-    generatePopup(nextName)
-}
-
-function previousEmployee(){
-    currentName = document.querySelector('.popupInfo').querySelector('h3').textContent
-    employees.forEach(employee => employeeNames.push(`${employee.name.first} ${employee.name.last}`))
-    previousName = employeeNames[employeeNames.indexOf(currentName) - 1]
-    if(currentName = employeeNames[0]){
-        console.log('wat')
-        prevousName = employeeNames[11]
-        console.log(previousName)
-        generatePopup(previousName)
+//popup cycle employees function
+function nextEmployee(e){
+    let currentName = document.querySelector('.popupInfo').querySelector('h3').textContent
+    if(e.target === next){
+        let nextName = employeeNames[employeeNames.indexOf(currentName) + 1]
+        if(currentName === employeeNames[11]){
+            nextName = employeeNames[0]
+            generatePopup(nextName)
+        }
+        else {
+            generatePopup(nextName)
+        }
     }
-    else {
-        previousName = employeeNames[employeeNames.indexOf(currentName) - 1]
-        generatePopup(previousName)
+    if(e.target === previous){
+        let nextName = employeeNames[employeeNames.indexOf(currentName) - 1]
+        if(currentName === employeeNames[0]){
+            nextName = employeeNames[11]
+            generatePopup(nextName)
+        }
+        else {
+            generatePopup(nextName)
+        }
     }
-    
 }
-
-

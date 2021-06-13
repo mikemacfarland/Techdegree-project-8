@@ -17,6 +17,9 @@ body{
 header{
     padding-top: 1rem;
     flex-direction: column;
+    &div{
+        flex-direction: column;
+    }
 }
 
 h1{
