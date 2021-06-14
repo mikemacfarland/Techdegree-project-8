@@ -80,7 +80,7 @@ function generateHTML() {
             <img class="thumbnail" src="${employee.picture.large}" alt="${employee.name.first} ${employee.name.last}">
                 <div class="cardInfo flex">
                     <h3>${employee.name.first} ${employee.name.last}</h3>
-                    <a id="email" href="mailto:${employee.email}">Send Email</a>
+                    <a id="email" href="mailto:${employee.email}">${employee.email}</a>
                     <p>${employee.location.city}</p>
                 </div>
             </div>`)
@@ -99,7 +99,7 @@ function generatePopup(employeeName){
     <img class="popupThumbnail" src="${popupEmployee.picture.large}" alt="${popupEmployee.name.first} ${popupEmployee.name.last}">
     <div class="popupInfo flex">
         <h3>${popupEmployee.name.first} ${popupEmployee.name.last}</h3>
-        <a id="email" href="mailto:${popupEmployee.email}">Send Email</a>
+        <a id="email" href="mailto:${popupEmployee.email}">${popupEmployee.email}</a>
         <p class="phone">${popupEmployee.phone}</p>
         <p class="adress">${popupEmployee.location.street.number} ${popupEmployee.location.street.name} ${popupEmployee.location.city} ${popupEmployee.location.state}, ${popupEmployee.location.postcode}</p>
         <p class ="birthday">Birthday: ${dobFlat}</p>

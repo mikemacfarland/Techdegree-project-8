@@ -81,6 +81,7 @@ h1 {
 }
 
 #email {
+  font-size: 0.9rem;
   text-decoration: none;
   color: grey;
 }
