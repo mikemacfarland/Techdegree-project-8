@@ -80,7 +80,7 @@ function generateHTML() {
             <img class="thumbnail" src="${employee.picture.large}" alt="${employee.name.first} ${employee.name.last}">
                 <div class="cardInfo flex">
                     <h3>${employee.name.first} ${employee.name.last}</h3>
-                    <a id="email" href="mailto:${employee.email}">${employee.email}</a>
+                    <a id="email" href="mailto:${employee.email}">Send Email</a>
                     <p>${employee.location.city}</p>
                 </div>
             </div>`)
