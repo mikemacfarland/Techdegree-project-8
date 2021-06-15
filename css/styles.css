@@ -18,7 +18,7 @@ header {
   padding-top: 1rem;
   flex-direction: column;
 }
-headerdiv {
+header div {
   flex-direction: column;
 }
 
@@ -81,7 +81,7 @@ h1 {
 }
 
 #email {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   text-decoration: none;
   color: grey;
 }
